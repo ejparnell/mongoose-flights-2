@@ -1,0 +1,47 @@
+<!-- <%- include('../partials/header') %>
+
+<section>
+    <h1><%= flight.airline %></h1>
+    <h3>Airport: <%= flight.airport %></h3>
+    <h3>Flight No: <%= flight.flightNo %></h3>
+    <h3>Departure: <%= flight.departs.toLocaleString('en-US', {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true
+    }) %></h3>
+</section>
+
+<%- include('../partials/footer') %> -->
+
+ <%- include('../partials/header') %> 
+<div class="container">
+    <h1 class="my-5">Flight Details</h1>
+    <table class="table table-bordered">
+      <thead class="thead-light">
+        <tr>
+          <th>Airline</th>
+          <th>Airport</th>
+          <th>Flight Number</th>
+          <th>Departure Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= flight.airline %></td>
+          <td><%= flight.airport %></td>
+          <td><%= flight.flightNo %></td>
+          <td><%= flight.departs.toLocaleString() %></td>
+        </tr>
+      </tbody>
+    </table>
+    <a href="/flights/<%= flight._id %>/edit" class="btn btn-primary mr-2">Edit</a>
+    <form action="/flights/<%= flight._id %>?_method=DELETE" method="POST" style="display: inline;">
+      <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+    <a href="/flights" class="btn btn-secondary mt-3">Back to Flights List</a>
+  </div>
+
+  <% include('../partials/footer') %>

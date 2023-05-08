@@ -1,0 +1,49 @@
+<!-- <%- include('../partials/header') %>
+
+<h1>All Flights</h1>
+
+<ul>
+  <% flights.forEach(function(flight) { %>
+    <li class="<%= new Date(flight.departs) < new Date() ? 'text-danger' : '' %>"><%= flight.airline %> - <%= flight.airport %> - <%= flight.flightNo %> - <%= flight.departs.toLocaleString('en-US', {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric'
+    }) %></li>
+  <% }); %>
+</ul>
+
+<%- include('../partials/footer') %> -->
+
+<%- include('../partials/header') %>
+
+<div class="container">
+  <h1 class="my-5">All Flights</h1>
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>Airline</th>
+        <th>Airport</th>
+        <th>Flight Number</th>
+        <th>Departure Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% flights.forEach(function(flight) { %>
+        <tr class="<%= new Date(flight.departs) < new Date() ? 'table-danger' : '' %>">
+          <td><%= flight.airline %></td>
+          <td><%= flight.airport %></td>
+          <td><%= flight.flightNo %></td>
+          <td><%= flight.departs.toLocaleString('en-US', {
+              month: 'long',
+              day: 'numeric',
+              year: 'numeric'
+          }) %></td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+  <a href="/flights/new" class="btn btn-primary mr-2">Add New Flight</a>
+  <a href="/" class="btn btn-secondary mt-3">Back to Homepage</a>
+</div>
+
+<%- include('../partials/footer') %>
