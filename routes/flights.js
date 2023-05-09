@@ -13,6 +13,8 @@ router.get("/", flightCtrl.index);
 
 router.post("/", flightCtrl.create);
 
+router.post("/:id/destination", flightCtrl.updateDestination);
+
 router.get("/:id", flightCtrl.show);
 
 module.exports = router;

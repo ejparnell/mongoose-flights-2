@@ -5,6 +5,18 @@ oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
 
 const Schema = mongoose.Schema;
 
+const destinationSchema = new Schema({
+    airport: {
+        type: String,
+        enum: ['LGA', 'AUS', 'DFW', 'DEN', 'LAX', 'SAN'],
+        required: true,
+    },
+    arrival: {
+        type: Date,
+        required: true,
+    }
+});
+
 const flightsSchema = new Schema({
     airline: {
         type: String,
@@ -33,9 +45,15 @@ const flightsSchema = new Schema({
             }
         }
     },
+    destinations: {
+        type: [destinationSchema],
+        required: true,
+    }
 }, {
     timestamps: true
 });
+
+
 
 
 module.exports = mongoose.model('Flight', flightsSchema)

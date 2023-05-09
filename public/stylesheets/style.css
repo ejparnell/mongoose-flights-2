@@ -1,9 +1,57 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-color: blanchedalmond;
+  background-color: whitesmoke;
+}
+
+.home-title {
+  text-align: center;
+  margin-top: 50px;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  
+  overflow: hidden;
+}
+
+.a {
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  /* margin-right: 10px; */
+  font-size: 30px;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+}
+
+.b {
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  /* margin-left: 40px; */
+  font-size: 30px;
+  border-right: 1px solid black;
+}
+
+.c {
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  /* margin-left: 50px; */
+  font-size: 30px;
+  border-right: 1px solid black;
 }
 
 a {
   color: #00B7FF;
+}
+
+.my-5 {
+  text-align: center;
+}
+
+.new-flight {
+  text-align: center;
 }

@@ -1,47 +1,79 @@
-<!-- <%- include('../partials/header') %>
+<%- include('../partials/header') %>
 
-<section>
-    <h1><%= flight.airline %></h1>
-    <h3>Airport: <%= flight.airport %></h3>
-    <h3>Flight No: <%= flight.flightNo %></h3>
-    <h3>Departure: <%= flight.departs.toLocaleString('en-US', {
-        month: 'long',
-        day: 'numeric',
-        year: 'numeric',
-        hour: 'numeric',
-        minute: 'numeric',
-        hour12: true
-    }) %></h3>
-</section>
-
-<%- include('../partials/footer') %> -->
-
- <%- include('../partials/header') %> 
 <div class="container">
-    <h1 class="my-5">Flight Details</h1>
-    <table class="table table-bordered">
-      <thead class="thead-light">
-        <tr>
-          <th>Airline</th>
-          <th>Airport</th>
-          <th>Flight Number</th>
-          <th>Departure Time</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><%= flight.airline %></td>
-          <td><%= flight.airport %></td>
-          <td><%= flight.flightNo %></td>
-          <td><%= flight.departs.toLocaleString() %></td>
-        </tr>
-      </tbody>
-    </table>
-    <a href="/flights/<%= flight._id %>/edit" class="btn btn-primary mr-2">Edit</a>
+  <h1 class="my-5">Flight Details</h1>
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>Airline</th>
+        <th>Airport</th>
+        <th>Flight Number</th>
+        <th>Departure Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= flight.airline %></td>
+        <td><%= flight.airport %></td>
+        <td><%= flight.flightNo %></td>
+        <td>
+          <%= flight.departs.toLocaleString('en-US', { month: 'long', day:
+          'numeric', year: 'numeric' }) %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Add Destination</h2>
+  <form action="/flights/<%= flight._id %>/destination" method="POST">
+    <div class="form-group">
+      <label for="airport">Destination Airport:</label>
+      <select class="form-control" id="airport" name="airport">
+        <% availableAirports.forEach(function(airport) { %>
+        <option value="<%= airport %>"><%= airport %></option>
+        <% }) %>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="arrives">Arrival Date/Time:</label>
+      <input
+        type="datetime-local"
+        class="form-control"
+        id="arrival"
+        name="arrival"
+        value="<%= departsDate %>"
+        required
+      />
+      <small class="form-text text-muted">Format: yyyy-MM-ddThh:mm</small>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Destination</button>
+  </form>
+
+  <h2>Destinations</h2>
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>Airport</th>
+        <th>Arrival Date/Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% flight.destinations.forEach(function(destination) { %>
+      <tr>
+        <td><%= destination.airport %></td>
+        <td>
+          <%= destination.arrival.toLocaleString('en-US', { month: 'long', day:
+          'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric' }) %>
+        </td>
+      </tr>
+      <% }); %>
+    </tbody>
+  </table>
+  <!-- <a href="/flights/<%= flight._id %>/edit" class="btn btn-primary mr-2">Edit</a>
     <form action="/flights/<%= flight._id %>?_method=DELETE" method="POST" style="display: inline;">
       <button type="submit" class="btn btn-danger">Delete</button>
-    </form>
-    <a href="/flights" class="btn btn-secondary mt-3">Back to Flights List</a>
-  </div>
+    </form> -->
+  <a href="/flights" class="btn btn-secondary mt-3">Back to Flights List</a>
+</div>
 
-  <% include('../partials/footer') %>
+<% include('../partials/footer') %>
