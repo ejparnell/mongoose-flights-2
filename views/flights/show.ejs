@@ -48,7 +48,24 @@
     </div>
     <button type="submit" class="btn btn-primary">Add Destination</button>
   </form>
-
+<!-- this is where the tickets show -->
+<% if (tickets.length > 0) { %>
+  <h3>Tickets for this flight:</h3>
+  <ul>
+    <% tickets.forEach(function(ticket) { %>
+    <form
+      action="/flights/<%= flight._id %>"
+      method="DELETE"
+      style="display: inline"
+    >
+      <button type="submit" value="DELETE" class="btn btn-danger">Delete</button>
+    </form>
+    <li>Seat: <%= ticket.seat %>, Price: <%= ticket.price %></li>
+    <% }); %>
+  </ul>
+  <% } else { %>
+  <p>No tickets have been created for this flight yet.</p>
+<% } %>
   <h2>Destinations</h2>
   <table class="table table-bordered">
     <thead class="thead-light">
@@ -74,6 +91,7 @@
       <button type="submit" class="btn btn-danger">Delete</button>
     </form> -->
   <a href="/flights" class="btn btn-secondary mt-3">Back to Flights List</a>
+  <a href="/flights/<%= flight._id %>/tickets/new" class="btn btn-primary">New Ticket</a>
 </div>
 
 <% include('../partials/footer') %>
